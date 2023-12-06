@@ -1,0 +1,23 @@
+import librosa
+import json
+
+files = ["ali-nisi-dovoljno-lukav-i-namazan.mp3","baletan.mp3","covek-pojma-nema.mp3","da-je-baba-deda.mp3","dokle-bre-vise.mp3","duhovito.mp3","gledaju-se-kao-ljubavnici.mp3","glupo-je-samo-1.mp3","gvardiola.mp3","hvala-ti-iskreno-od-srca.mp3","hvata-me-panika.mp3","izvolite-kolega.mp3","ja-njega-potpuno-razumem.mp3","kad-je-zivot-samo-jedan.mp3","kako-vas-nije-sramota.mp3","kao-da-sam-pekar.mp3","kompleksna-tema.mp3","kukavicki.mp3","matematika.mp3","mene-zabole-stikla.mp3","na-mene-ne-moze-da-utice.mp3","ne-mozete-da-zabranite.mp3","niko-ne-sme-a-da-kaze.mp3","ovaj-ne-zna-nista.mp3","pajaci-cirkuzanti.mp3","prestani-da-lazes.mp3","sad-si-me-postideo.mp3","sigurno-ovim-papirima-mahati-necu.mp3","sitauacija-je-beznadezna.mp3","suzio-si-od-srece-i-ponosa.mp3","u-patoloskom-strahu.mp3","ushiceni.mp3","vi-ste-samo-jedna-gomila-prevaranata.mp3","vidimo-se-nikada.mp3","znam-sve.mp3"]
+keys = '1 2 3 4 5 6 7 8 9 0 q w e r t y u i o p a s d f g h j k l z x c v b n m Enter'.split(' ')
+
+s = zip(files,keys)
+
+
+out = {}
+
+for f,k in s:
+    print(f)
+    print(k)
+    dur = librosa.get_duration(filename=f)
+    d = round(dur, 4)
+    dd = d*1000
+    ddd = round(dd, 0)
+    out[k]= {'name':f, 'duration':ddd}
+
+
+with open('data.json', 'w') as f:
+    f.write(json.dumps(out))
